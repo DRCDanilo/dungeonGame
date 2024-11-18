@@ -3,11 +3,11 @@ import java.awt.*;
 
 public class Sprite implements Displayable{
 
-    private Image image;
-    private double x;
-    private double y;
-    private double width;
-    private double height;
+    protected final Image image;
+    protected double x;
+    protected double y;
+    protected final double width;
+    protected final double height;
 
     public Sprite(double x, double y, Image image, double width, double height) {
         this.image = image;
@@ -21,6 +21,8 @@ public class Sprite implements Displayable{
     @Override
     public void draw(Graphics g){
         g.drawImage(image,(int)x,(int)y,null);
+
+
 
     }
 }

@@ -29,6 +29,10 @@ public class Main {
         Sprite test = new Sprite(200,300, ImageIO.read(new File("./img/tree.png")),64,64);
         renderEngine.addToRenderList(test);
 
+        DynamicSprite hero = new DynamicSprite(200,300,
+                ImageIO.read(new File("./img/heroTileSheetLowRes.png")),48,50);
+        renderEngine.addToRenderList(hero);
+
     }
 
     public static void main(String[] args) throws Exception{
