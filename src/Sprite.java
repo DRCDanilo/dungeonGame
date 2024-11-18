@@ -9,8 +9,8 @@ public class Sprite implements Displayable{
     private double width;
     private double height;
 
-    public Sprite(double x) {
-        //this.image = image;
+    public Sprite(double x, double y, Image image, double width, double height) {
+        this.image = image;
         this.x = x;
         this.y = y;
         this.width = width;

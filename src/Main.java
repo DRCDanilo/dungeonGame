@@ -1,4 +1,7 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import java.io.File;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -22,6 +25,9 @@ public class Main {
         renderTimer.start();
         displayZoneFrame.setVisible(true);
         displayZoneFrame.getContentPane().add(renderEngine);
+
+        Sprite test = new Sprite(200,300, ImageIO.read(new File("./img/tree.png")),64,64);
+        renderEngine.addToRenderList(test);
 
     }
 
