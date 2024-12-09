@@ -2,7 +2,6 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PhysicEngine implements Engine{
-
     private ArrayList<DynamicSprite> movingSpriteList;
     private ArrayList <Sprite> environment;
 
@@ -33,5 +32,4 @@ public class PhysicEngine implements Engine{
             dynamicSprite.moveIfPossible(environment);
         }
     }
-
 }

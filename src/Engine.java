@@ -1,3 +1,3 @@
 public interface Engine {
-    public abstract void update();
+    public void update();
 }
