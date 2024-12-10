@@ -19,6 +19,11 @@ public class Main {
         displayZoneFrame.setSize(400,600);
         displayZoneFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        //Test Danilo
+        SolidSprite hero1 = new SolidSprite(0,0,
+                ImageIO.read(new File("./img/l0.png")),48,50);
+
+
         DynamicSprite hero = new DynamicSprite(200,300,
                 ImageIO.read(new File("./img/heroTileSheetLowRes.png")),48,50);
 
@@ -43,6 +48,9 @@ public class Main {
         renderEngine.addToRenderList(hero);
         physicEngine.addToMovingSpriteList(hero);
         physicEngine.setEnvironment(level.getSolidSpriteList());
+
+        //TestDanilo
+        renderEngine.addToRenderList(hero1);
 
         displayZoneFrame.addKeyListener(gameEngine);
     }
