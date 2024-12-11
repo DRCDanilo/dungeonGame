@@ -34,6 +34,7 @@ public class DynamicSprite extends SolidSprite{
             if ((s instanceof SolidSprite) && (s!=this)){
                 if (((SolidSprite) s).intersect(moved)){
                     return false;
+
                 }
             }
         }
@@ -64,6 +65,10 @@ public class DynamicSprite extends SolidSprite{
     public void moveIfPossible(ArrayList<Sprite> environment){
         if (isMovingPossible(environment)){
             move();
+        }
+        else
+        {
+            //QUE SE HACE SI NO SE PUEDE MOVER?
         }
     }
 

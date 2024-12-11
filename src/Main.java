@@ -14,6 +14,9 @@ public class Main {
     GameEngine gameEngine;
     PhysicEngine physicEngine;
 
+    //TestDanilo
+    public int vida = 0;
+
     public Main() throws Exception{
         displayZoneFrame = new JFrame("Java Labs");
         displayZoneFrame.setSize(400,600);
@@ -22,6 +25,7 @@ public class Main {
         //Test Danilo
         SolidSprite hero1 = new SolidSprite(0,0,
                 ImageIO.read(new File("./img/l3.png")),48,50);
+
 
 
         DynamicSprite hero = new DynamicSprite(200,300,
@@ -51,6 +55,8 @@ public class Main {
 
         //TestDanilo
         renderEngine.addToRenderList(hero1);
+
+
 
         displayZoneFrame.addKeyListener(gameEngine);
     }
