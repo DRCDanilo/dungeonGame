@@ -21,7 +21,7 @@ public class Main {
 
         //Test Danilo
         SolidSprite hero1 = new SolidSprite(0,0,
-                ImageIO.read(new File("./img/l0.png")),48,50);
+                ImageIO.read(new File("./img/l3.png")),48,50);
 
 
         DynamicSprite hero = new DynamicSprite(200,300,
