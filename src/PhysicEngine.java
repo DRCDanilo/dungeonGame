@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class PhysicEngine implements Engine{
     }
 
     @Override
-    public void update() {
+    public void update() throws IOException {
         for(DynamicSprite dynamicSprite : movingSpriteList){
             dynamicSprite.moveIfPossible(environment);
         }

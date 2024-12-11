@@ -1,5 +1,8 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DynamicSprite extends SolidSprite{
@@ -13,7 +16,7 @@ public class DynamicSprite extends SolidSprite{
         super(x, y, image, width, height);
     }
 
-    private boolean isMovingPossible(ArrayList<Sprite> environment){
+    private boolean isMovingPossible(ArrayList<Sprite> environment) throws IOException {
         Rectangle2D.Double moved = new Rectangle2D.Double();
         switch(direction){
             case EAST: moved.setRect(super.getHitBox().getX()+speed,super.getHitBox().getY(),
@@ -33,6 +36,11 @@ public class DynamicSprite extends SolidSprite{
         for (Sprite s : environment){
             if ((s instanceof SolidSprite) && (s!=this)){
                 if (((SolidSprite) s).intersect(moved)){
+                    if(((SolidSprite) s).image == ImageIO.read(new File("./img/enemy.png")))
+                    {
+                        hero1.image = imageEnemy = ImageIO.read(new File("./img/enemy.png"));
+
+                    }
                     return false;
 
                 }
@@ -62,7 +70,7 @@ public class DynamicSprite extends SolidSprite{
         }
     }
 
-    public void moveIfPossible(ArrayList<Sprite> environment){
+    public void moveIfPossible(ArrayList<Sprite> environment) throws IOException {
         if (isMovingPossible(environment)){
             move();
         }
