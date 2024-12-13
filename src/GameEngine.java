@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -51,8 +52,7 @@ public class GameEngine implements Engine, KeyListener {
         count++;
         if( (count == 10) && (hero.x <=400) )
         {
-            System.out.println("Lost!");
-            showMessageDialog(null, "Times up! You lose!");
+            showMessageDialog(null, "Time Is Up, You Lost!", "Attention", JOptionPane.ERROR_MESSAGE);
             count = 0;
         }
     }
