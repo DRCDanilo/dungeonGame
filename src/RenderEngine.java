@@ -38,5 +38,6 @@ public class RenderEngine extends JPanel implements Engine{
     @Override
     public void update(){
         this.repaint();
+
     }
 }

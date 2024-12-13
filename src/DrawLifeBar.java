@@ -31,7 +31,8 @@ public class DrawLifeBar implements Displayable
     @Override
     public void draw(Graphics g) throws IOException {
         //if(sprite.lifeDecrease)
-        switch(life)
+        //System.out.println(DynamicSprite.life);
+        switch(DynamicSprite.life)
         {
             case 3:
                 image = ImageIO.read(new File("./img/l3.png"));

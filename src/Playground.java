@@ -17,7 +17,6 @@ public class Playground {
             final Image imageGrass = ImageIO.read(new File("./img/grass.png"));
             final Image imageRock = ImageIO.read(new File("./img/rock.png"));
             final Image imageTrap = ImageIO.read(new File("./img/trap.png"));
-            //final Image imageBar = ImageIO.read(new File("./img/bar.png"));
             final Image imageEnemy = ImageIO.read(new File("./img/enemy.png"));
             final Image imageBar = ImageIO.read(new File("./img/l3.png"));
 
@@ -35,6 +34,9 @@ public class Playground {
 
             final int imageBarWidth = imageEnemy.getWidth(null);
             final int imageBarHeight = imageEnemy.getHeight(null);
+
+            final int imageTrapWidth = imageEnemy.getWidth(null);
+            final int imageTrapHeight = imageEnemy.getHeight(null);
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(pathName));
             String line=bufferedReader.readLine();
@@ -54,7 +56,9 @@ public class Playground {
                             break;
                         case 'E' : environment.add(new SolidSprite(columnNumber*imageEnemyWidth,
                                 lineNumber*imageEnemyHeight, imageEnemy, imageEnemyWidth, imageEnemyHeight));
-
+                            break;
+                        case 'H' : environment.add(new SolidSprite(columnNumber*imageTrapWidth,
+                                lineNumber*imageTrapHeight, imageTrap, imageTrapWidth, imageTrapHeight));
                             break;
                     }
                     columnNumber++;

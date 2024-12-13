@@ -15,12 +15,9 @@ public class Main {
     GameEngine gameEngine;
     PhysicEngine physicEngine;
 
-    //TestDanilo
-    //public SolidSprite hero1;
-    public int life=2;
 
     public Main() throws Exception{
-        displayZoneFrame = new JFrame("Java Labs");
+        displayZoneFrame = new JFrame("Dungeon Game");
         displayZoneFrame.setSize(400,600);
         displayZoneFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -28,13 +25,14 @@ public class Main {
 
 
 
-        DynamicSprite hero = new DynamicSprite(200,300,
+        DynamicSprite hero = new DynamicSprite(70,450,
                 ImageIO.read(new File("./img/heroTileSheetLowRes.png")),48,50);
 
 
         //Test Danilo
         DrawLifeBar barLife = new DrawLifeBar(0,0,
-                ImageIO.read(new File("./img/l3.png")),48,50,hero,life);
+                ImageIO.read(new File("./img/l3.png")),48,50,hero,DynamicSprite.life);
+
 
 
         renderEngine = new RenderEngine(displayZoneFrame);
@@ -70,9 +68,6 @@ public class Main {
 
         physicEngine.addToMovingSpriteList(hero);
         physicEngine.setEnvironment(level.getSolidSpriteList());
-
-
-
 
 
 

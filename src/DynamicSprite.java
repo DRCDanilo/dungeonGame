@@ -1,17 +1,21 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class DynamicSprite extends SolidSprite{
-    private Direction direction = Direction.EAST;
+    private Direction direction = Direction.NORTH;
     private double speed = 5;
     private double timeBetweenFrame = 250;
     private boolean isWalking =true;
     private final int spriteSheetNumberOfColumn = 10;
-    protected int life = 3;
+    static int life = 3;
+    boolean oneTimeMessage = true;
 
 
     public DynamicSprite(double x, double y, Image image, double width, double height) {
@@ -83,7 +87,13 @@ public class DynamicSprite extends SolidSprite{
 
         if(this.x >= 400)
         {
-            System.out.println("You Did It!");
+            if(oneTimeMessage)
+            {
+                System.out.println("You Did It!");
+                showMessageDialog(null, "Good Game, You Did It!", "Congratulations", JOptionPane.PLAIN_MESSAGE);
+                oneTimeMessage = false;
+            }
+
         }
 
     }
@@ -134,6 +144,7 @@ public class DynamicSprite extends SolidSprite{
                     {
                         //L.image = imageEnemy = ImageIO.read(new File("./img/enemy.png"));
                         System.out.println("W+" + life+moved);
+
                         //decreaseLife();
 
 

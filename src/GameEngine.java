@@ -54,6 +54,7 @@ public class GameEngine implements Engine, KeyListener {
         {
             showMessageDialog(null, "Time Is Up, You Lost!", "Attention", JOptionPane.ERROR_MESSAGE);
             count = 0;
+
         }
     }
 
