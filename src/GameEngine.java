@@ -7,6 +7,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 public class GameEngine implements Engine, KeyListener {
     DynamicSprite hero;
     int count;
+    int timeToScape = 10;
 
     public GameEngine(DynamicSprite hero) {
         this.hero = hero;
@@ -50,10 +51,11 @@ public class GameEngine implements Engine, KeyListener {
     public void oneSecond()
     {
         count++;
-        if( (count == 10) && (hero.x <=400) )
+        if( (count == timeToScape) && (hero.x <=400) )
         {
             showMessageDialog(null, "Time Is Up, You Lost!", "Attention", JOptionPane.ERROR_MESSAGE);
             count = 0;
+
 
         }
     }

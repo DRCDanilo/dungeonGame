@@ -1,6 +1,8 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
@@ -93,8 +95,11 @@ public class DynamicSprite extends SolidSprite{
                 showMessageDialog(null, "Good Game, You Did It!", "Congratulations", JOptionPane.PLAIN_MESSAGE);
                 oneTimeMessage = false;
             }
-
         }
+
+        //if(this.x >= 400)
+
+
 
     }
 
@@ -102,10 +107,15 @@ public class DynamicSprite extends SolidSprite{
         if (isMovingPossible(environment)){
             move();
         }
+
+
         else
         {
             //System.out.println("no me estoy moviendo");//QUE SE HACE SI NO SE PUEDE MOVER?
-            decreaseLife();
+            //
+            timer.setRepeats(false);
+            timer.start();
+
         }
     }
 
@@ -140,15 +150,12 @@ public class DynamicSprite extends SolidSprite{
         for (Sprite s : enemies){
             if ((s instanceof SolidSprite) && (s!=this)){
                 if (((SolidSprite) s).intersect(moved)){
-                    if(true)//((SolidSprite) s).image == ImageIO.read(new File("./img/enemy.png")))
-                    {
-                        //L.image = imageEnemy = ImageIO.read(new File("./img/enemy.png"));
+                    /*if(((SolidSprite) s).x < s.x.this)
+                    {//L.image = imageEnemy = ImageIO.read(new File("./img/enemy.png"));
                         System.out.println("W+" + life+moved);
 
                         //decreaseLife();
-
-
-                    }
+                    }*/
                     return false;
 
                 }
@@ -156,6 +163,11 @@ public class DynamicSprite extends SolidSprite{
         }
         return true;
     }
+
+    Timer timer = new Timer(2000,new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent arg0) {decreaseLife();}
+    });
 
 
 
