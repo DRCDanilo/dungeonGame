@@ -11,6 +11,8 @@ public class DynamicSprite extends SolidSprite{
     private double timeBetweenFrame = 250;
     private boolean isWalking =true;
     private final int spriteSheetNumberOfColumn = 10;
+    protected int life = 3;
+
 
     public DynamicSprite(double x, double y, Image image, double width, double height) {
         super(x, y, image, width, height);
@@ -38,7 +40,9 @@ public class DynamicSprite extends SolidSprite{
                 if (((SolidSprite) s).intersect(moved)){
                     if(((SolidSprite) s).image == ImageIO.read(new File("./img/enemy.png")))
                     {
-                        hero1.image = imageEnemy = ImageIO.read(new File("./img/enemy.png"));
+                        //L.image = imageEnemy = ImageIO.read(new File("./img/enemy.png"));
+                        System.out.println("aaa");
+                        //lifeDecrease=true;
 
                     }
                     return false;
@@ -48,6 +52,14 @@ public class DynamicSprite extends SolidSprite{
         }
         return true;
     }
+
+    public void decreaseLife() {
+        if (life > 0) {
+            life--;
+        }
+    }
+
+
 
     public void setDirection(Direction direction) {
         this.direction = direction;
@@ -68,6 +80,12 @@ public class DynamicSprite extends SolidSprite{
                 this.x-=speed;
             }
         }
+
+        if(this.x >= 400)
+        {
+            System.out.println("You Did It!");
+        }
+
     }
 
     public void moveIfPossible(ArrayList<Sprite> environment) throws IOException {
@@ -76,7 +94,8 @@ public class DynamicSprite extends SolidSprite{
         }
         else
         {
-            //QUE SE HACE SI NO SE PUEDE MOVER?
+            //System.out.println("no me estoy moviendo");//QUE SE HACE SI NO SE PUEDE MOVER?
+            decreaseLife();
         }
     }
 
@@ -88,4 +107,47 @@ public class DynamicSprite extends SolidSprite{
                 (int) (index*this.width), (int) (direction.getFrameLineNumber()*height),
                 (int) ((index+1)*this.width), (int)((direction.getFrameLineNumber()+1)*this.height),null);
     }
+
+
+
+    public boolean isAnEnemy(ArrayList<Sprite> enemies) throws IOException {
+        Rectangle2D.Double moved = new Rectangle2D.Double();
+        switch(direction){
+            case EAST: moved.setRect(super.getHitBox().getX()+speed,super.getHitBox().getY(),
+                    super.getHitBox().getWidth(), super.getHitBox().getHeight());
+                break;
+            case WEST:  moved.setRect(super.getHitBox().getX()-speed,super.getHitBox().getY(),
+                    super.getHitBox().getWidth(), super.getHitBox().getHeight());
+                break;
+            case NORTH:  moved.setRect(super.getHitBox().getX(),super.getHitBox().getY()-speed,
+                    super.getHitBox().getWidth(), super.getHitBox().getHeight());
+                break;
+            case SOUTH:  moved.setRect(super.getHitBox().getX(),super.getHitBox().getY()+speed,
+                    super.getHitBox().getWidth(), super.getHitBox().getHeight());
+                break;
+        }
+
+        for (Sprite s : enemies){
+            if ((s instanceof SolidSprite) && (s!=this)){
+                if (((SolidSprite) s).intersect(moved)){
+                    if(true)//((SolidSprite) s).image == ImageIO.read(new File("./img/enemy.png")))
+                    {
+                        //L.image = imageEnemy = ImageIO.read(new File("./img/enemy.png"));
+                        System.out.println("W+" + life+moved);
+                        //decreaseLife();
+
+
+                    }
+                    return false;
+
+                }
+            }
+        }
+        return true;
+    }
+
+
+
+
+
 }

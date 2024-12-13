@@ -9,14 +9,17 @@ import java.util.ArrayList;
 public class Playground {
     private ArrayList<Sprite> environment = new ArrayList<>();
 
+    private ArrayList<Sprite> enemies = new ArrayList<>();
+
     public Playground (String pathName){
         try{
             final Image imageTree = ImageIO.read(new File("./img/tree.png"));
             final Image imageGrass = ImageIO.read(new File("./img/grass.png"));
             final Image imageRock = ImageIO.read(new File("./img/rock.png"));
             final Image imageTrap = ImageIO.read(new File("./img/trap.png"));
-            final Image imageBar = ImageIO.read(new File("./img/bar.png"));
+            //final Image imageBar = ImageIO.read(new File("./img/bar.png"));
             final Image imageEnemy = ImageIO.read(new File("./img/enemy.png"));
+            final Image imageBar = ImageIO.read(new File("./img/l3.png"));
 
             final int imageTreeWidth = imageTree.getWidth(null);
             final int imageTreeHeight = imageTree.getHeight(null);
@@ -29,6 +32,9 @@ public class Playground {
 
             final int imageEnemyWidth = imageEnemy.getWidth(null);
             final int imageEnemyHeight = imageEnemy.getHeight(null);
+
+            final int imageBarWidth = imageEnemy.getWidth(null);
+            final int imageBarHeight = imageEnemy.getHeight(null);
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(pathName));
             String line=bufferedReader.readLine();
@@ -48,6 +54,7 @@ public class Playground {
                             break;
                         case 'E' : environment.add(new SolidSprite(columnNumber*imageEnemyWidth,
                                 lineNumber*imageEnemyHeight, imageEnemy, imageEnemyWidth, imageEnemyHeight));
+
                             break;
                     }
                     columnNumber++;
@@ -55,6 +62,8 @@ public class Playground {
                 columnNumber =0;
                 lineNumber++;
                 line=bufferedReader.readLine();
+                //TestDanilo
+
             }
         }
         catch (Exception e){
@@ -77,4 +86,17 @@ public class Playground {
         }
         return displayableArrayList;
     }
+
+    public ArrayList<Sprite> getSolidEnemiesList(){
+        ArrayList <Sprite> solidEnemiesArrayList = new ArrayList<>();
+        for (Sprite sprite : environment){
+            if (sprite instanceof SolidSprite) solidEnemiesArrayList.add(sprite);
+        }
+        return solidEnemiesArrayList;
+    }
+
+
+
+
 }
+//Create a lois of enemies in PlayGround. Method same as 74, with the enemy list. Copy the ismOvinfPosible, not with environmental with enemilist If is true, change the variable to the life.

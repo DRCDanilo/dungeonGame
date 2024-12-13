@@ -16,21 +16,26 @@ public class Main {
     PhysicEngine physicEngine;
 
     //TestDanilo
-    public SolidSprite hero1;
+    //public SolidSprite hero1;
+    public int life=2;
 
     public Main() throws Exception{
         displayZoneFrame = new JFrame("Java Labs");
         displayZoneFrame.setSize(400,600);
         displayZoneFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        //Test Danilo
-        SolidSprite hero1 = new SolidSprite(0,0,
-                ImageIO.read(new File("./img/l3.png")),48,50);
+
 
 
 
         DynamicSprite hero = new DynamicSprite(200,300,
                 ImageIO.read(new File("./img/heroTileSheetLowRes.png")),48,50);
+
+
+        //Test Danilo
+        DrawLifeBar barLife = new DrawLifeBar(0,0,
+                ImageIO.read(new File("./img/l3.png")),48,50,hero,life);
+
 
         renderEngine = new RenderEngine(displayZoneFrame);
         physicEngine = new PhysicEngine();
@@ -45,10 +50,12 @@ public class Main {
                 throw new RuntimeException(e);
             }
         });
+        Timer scapeTimer = new Timer(1000,(time)-> gameEngine.oneSecond());
 
         renderTimer.start();
         gameTimer.start();
         physicTimer.start();
+        scapeTimer.start();
 
         displayZoneFrame.getContentPane().add(renderEngine);
         displayZoneFrame.setVisible(true);
@@ -57,11 +64,16 @@ public class Main {
         //SolidSprite testSprite = new DynamicSprite(100,100,test,0,0);
         renderEngine.addToRenderList(level.getSpriteList());
         renderEngine.addToRenderList(hero);
+        //TestDanilo
+        renderEngine.addToRenderList(barLife);
+        physicEngine.setEnvironment(level.getSolidEnemiesList());
+
         physicEngine.addToMovingSpriteList(hero);
         physicEngine.setEnvironment(level.getSolidSpriteList());
 
-        //TestDanilo
-        renderEngine.addToRenderList(hero1);
+
+
+
 
 
 

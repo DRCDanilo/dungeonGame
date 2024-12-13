@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -26,7 +27,11 @@ public class RenderEngine extends JPanel implements Engine{
     public void paint(Graphics g) {
         super.paint(g);
         for (Displayable renderObject:renderList) {
-            renderObject.draw(g);
+            try {
+                renderObject.draw(g);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

@@ -31,6 +31,9 @@ public class PhysicEngine implements Engine{
     public void update() throws IOException {
         for(DynamicSprite dynamicSprite : movingSpriteList){
             dynamicSprite.moveIfPossible(environment);
+
+            dynamicSprite.isAnEnemy(environment);
+
         }
     }
 }

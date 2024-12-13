@@ -1,8 +1,11 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class GameEngine implements Engine, KeyListener {
     DynamicSprite hero;
+    int count;
 
     public GameEngine(DynamicSprite hero) {
         this.hero = hero;
@@ -10,6 +13,7 @@ public class GameEngine implements Engine, KeyListener {
 
     @Override
     public void update() {
+
 
     }
 
@@ -41,4 +45,16 @@ public class GameEngine implements Engine, KeyListener {
     public void keyReleased(KeyEvent e) {
 
     }
+
+    public void oneSecond()
+    {
+        count++;
+        if( (count == 10) && (hero.x <=400) )
+        {
+            System.out.println("Lost!");
+            showMessageDialog(null, "Times up! You lose!");
+            count = 0;
+        }
+    }
+
 }
